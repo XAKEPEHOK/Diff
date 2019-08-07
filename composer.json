@@ -1,0 +1,31 @@
+{
+  "name": "xakepehok/smart-diff",
+  "description": "Diff",
+  "keywords": ["diff", "array"],
+  "type": "library",
+  "minimum-stability": "stable",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Timur Kasumov aka XAKEPEHOK",
+      "email": "icq-475204@ya.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Diff\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Diff\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=7.1.0",
+    "ext-json": "*",
+    "phpunit/phpunit": "7.5"
+  },
+  "require-dev": {
+  }
+}
