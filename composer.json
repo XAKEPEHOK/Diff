@@ -13,12 +13,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "Diff\\": "src/"
+      "XAKEPEHOK\\Diff\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Diff\\": "tests/"
+      "XAKEPEHOK\\Diff\\": "tests/"
     }
   },
   "require": {

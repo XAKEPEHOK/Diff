@@ -118,9 +118,31 @@ class Diff
                 }
             }
         }
-        return $pusher->getArray();
-    }
 
+        $array = $pusher->getArray();
+
+        do {
+            $swapCount = 0;
+            $keys = array_keys($array);
+            for ($i = 0; $i < count($keys); $i++) {
+                if ($i > 0) {
+                    $prevKey = $keys[$i - 1];
+                    $nextKey = $keys[$i];
+
+                    $prevState = $array[$prevKey]['state'];
+                    $nextState = $array[$nextKey]['state'];
+
+                    if ($prevState == State::OPERATION_INSERTED && $nextState == State::OPERATION_DELETED) {
+                        $swapCount++;
+                        $array = $this->arraySwapKeys($array, $prevKey, $nextKey);
+                        break;
+                    }
+                }
+            }
+        } while ($swapCount > 0);
+
+        return  $array;
+    }
 
     protected function arrayIndexByHash(array $array): array
     {
@@ -132,6 +154,22 @@ class Diff
         return $result;
     }
 
+    private function arraySwapKeys(array $array, $key_1, $key_2): array
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            if ($key == $key_1) {
+                $result[$key_1] = $array[$key_2];
+            } elseif ($key == $key_2) {
+                $result[$key_2] = $array[$key_1];
+            } else {
+                $result[$key] = $value;
+            }
+        }
+
+        return $result;
+    }
+
     private function getKeyOrNull(?KeyValue $keyValue)
     {
         if (is_null($keyValue)) {
@@ -139,5 +177,6 @@ class Diff
         }
         return $keyValue->getKey();
     }
+
 
 }
