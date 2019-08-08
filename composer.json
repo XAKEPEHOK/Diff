@@ -1,5 +1,5 @@
 {
-  "name": "xakepehok/smart-diff",
+  "name": "xakepehok/diff",
   "description": "Diff",
   "keywords": ["diff", "array"],
   "type": "library",
